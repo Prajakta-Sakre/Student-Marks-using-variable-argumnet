@@ -1,0 +1,77 @@
+import java.math.BigDecimal;
+import java.math.BigDecimal;
+public class StudentRunner {
+
+	public static void main(String[] args) {
+		
+		Student student=new Student("Ranga", 92,83,75,98);
+		int number=student.getnumberOfMarks();
+		System.out.println("Number of marks is "+number);
+		
+		int sum=student.getTotalSumOfMarks();
+		System.out.println("sum  of marks is "+sum);
+		
+		int maximumMarks=student.getMaximunMarks();
+		
+		System.out.println("MAximum  marks is "+maximumMarks);
+		
+		int MinimumMarks=student.getMinimumMarks();
+		System.out.println("Minimum of marks is "+MinimumMarks);
+		
+		BigDecimal average=student.getAverageMarks();
+		System.out.println("Average of marks is "+average);
+	}
+
+}
+private String name;public class Student {
+
+	private int[] marks;
+
+	public Student(String name, int... marks) {
+		this.name=name;
+		this.marks=marks;
+	}
+	
+
+	public int getnumberOfMarks() {
+	
+		return marks.length;
+	}
+
+	public int getTotalSumOfMarks() {
+		int sum=0;
+		for(int mark:marks) {
+			sum+=mark;
+			
+		}
+		return sum;
+	}
+
+	public int getMaximunMarks() {
+		int maximum =0;
+		for(int mark:marks) {
+			if(mark>maximum) {
+				maximum=mark;
+			}
+		}
+		return maximum;
+	}
+
+	public int getMinimumMarks() {
+		int minimum=Integer.MAX_VALUE;
+		for(int mark:marks) {
+			if(mark<minimum) {
+				minimum=mark;
+			}
+		}
+		return minimum;
+	}
+
+	public BigDecimal getAverageMarks() {
+		int sum=getTotalSumOfMarks();
+	    int number=getnumberOfMarks();
+		return new BigDecimal(sum).divide(new BigDecimal(number),3,RoundingMode.UP);
+		//98.6666.... Precision(3)
+	}
+}
+
